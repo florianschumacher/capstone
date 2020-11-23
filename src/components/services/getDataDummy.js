@@ -1,4 +1,3 @@
 export default function getDataDummy() {
-    return fetch('https://rickandmortyapi.com/api/character/')
-        .then(res => res.json())
+    return fetch('https://hp-api.herokuapp.com/api/characters').then(res => res.json())
 }  

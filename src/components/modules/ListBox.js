@@ -1,12 +1,12 @@
 import styled from 'styled-components/macro'
 import React from 'react'
 
-export default function ListBox({ name, imgUrl, _ }) {
+export default function ListBox({ name, patronus, image }) {
     return (
         <ListItem>
-            <img src={imgUrl} alt="" />
+            <img src={image} alt="" />
             <h3>{name}</h3>
-            <p>{_}</p>
+            <p>{patronus}</p>
         </ListItem>
     )
 }
@@ -24,3 +24,5 @@ const ListItem = styled.section`
     margin-bottom: 10px;
     background-color: yellow;
     `
+
+console.log(ListItem)
