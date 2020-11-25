@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import styled from 'styled-components/macro';
 import axios from 'axios'
 
 // THESE CREDENTIALS MUST BE STORED ON A SERVER, ONLY FOR TEMPORARY USE
