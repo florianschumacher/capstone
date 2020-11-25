@@ -1,11 +1,14 @@
+import GlobalStyle from '../src/components/services/GlobalStyles'
+import styled from 'styled-components/macro'
 import React from 'react'
 import { useState, useEffect } from 'react'
 /* import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
  */
-import styled, { createGlobalStyle } from 'styled-components/macro'
 import getDataDummy from './components/services/getDataDummy'
 import ListBox from './components/modules/ListBox'
 import Search from './components/modules/SearchAlternate'
+import Navigation from './components/modules/Footer'
+
 
 
 function App() {
@@ -25,6 +28,7 @@ function App() {
 
   return (
     <div className="App">
+      <GlobalStyle />
       <Search />
       <Contentblock>
         {listBoxes.map(({ name, image }) => (
@@ -34,7 +38,7 @@ function App() {
           />
         ))}
       </Contentblock>
-      <GlobalStyle />
+      <Navigation />
     </div>
   )
 }
@@ -45,6 +49,7 @@ const Contentblock = styled.div`
   display: block;
   margin-top: 80px;
   margin-bottom: 120px;
+<<<<<<< Updated upstream
 `
 
 const GlobalStyle = createGlobalStyle`
@@ -52,3 +57,6 @@ const GlobalStyle = createGlobalStyle`
     max-width: 375px;
 
   }`
+=======
+`
+>>>>>>> Stashed changes
