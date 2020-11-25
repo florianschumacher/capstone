@@ -1,21 +1,41 @@
-import { useEffect, useState } from 'react';
-import styled from 'styled-components/macro';
+import React, { useEffect, useState } from 'react';
+import styled, { keyframes } from 'styled-components/macro';
 
 
 /*  */
-export default function SearchForm() {
-    const [searchTerm, setSearchTerm] = useState({
-        sendForm: ''
-    })
-    const handleChange = event => { setSearchTerm(event.target.value); }
-};
+const Search = (props) => {
+    const [searchTerm, setSearchTerm] = useState('')
+    const handleChange = (event) => { setSearchTerm(event.target.value); }
+
+    const resetInputField = () => {
+        setSearchTerm('')
+    }
+
+    const callSearch = (event) => {
+        event.preventDefault()
+        props.search(searchTerm)
+        resetInputField();
+    }
+
+    const Input = (event) => {
+        const handleKeyDown = (event) => { if (event.key === 'Enter') { callSearch(); } }
 
 
-return (
-    <FormWrapper onSubmit={sendForm}>
-        <div>
-            <label htmlFor="searchFormula"></label>
-        </div>
+        return (
+            <container>
+                <form className="search">
+                    <input
+                        value={searchTerm}
+                        onChange={handleChange}
+                        type="text"
+                    />
+                </form>
 
-    </FormWrapper>
-)
+                <input type="submit" value="SEARCH" onKeyDown={handleKeyDown} />
+            </container>
+        )
+    }
+}
+
+export default Search;
+

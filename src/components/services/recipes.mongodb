@@ -1,0 +1,80 @@
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+// Select the database to use.
+use('recipes');
+
+// The drop() command destroys all data from a collection.
+// Make sure you run it against proper database and collection.
+db.recipes.drop();
+
+// Insert a few documents into the recipes collection.
+db.recipes.insertMany([
+  { '_id' : 1, 
+  'titel' : 'Chicken and Parsley Salad Pitas', 
+  'health' : '', 
+  'image' : './images/ChickenParsleySaladPitas.jpg', 
+  'description' : '' 
+  },
+
+  { '_id' : 2, 
+  'titel' : 'Sweet potato & corned beef sandwich', 
+  'health' : '', 
+  'image' : './images/Sweetpotatocornedbeefsandwich.jpg', 
+  'description' : '' 
+  },
+
+  { '_id' : 3, 
+  'titel' : 'Tuna, Corn and Celery Sandwich on Soy-Lin', 
+  'health' : '', 
+  'image' : './images/TunaFelafelAndTaboulehSalad.jpg', 
+  'description' : '' 
+  },
+
+  { '_id' : 4, 
+  'titel' : 'Pastry-Free Rice and Veggie Pie', 
+  'health' : '', 
+  'image' : './images/Pastry-Free.jpg', 
+  'description' : '' 
+  },
+
+  { '_id' : 5, 
+  'titel' : 'Cumin Pears, Carrot, Tofu and Lentil Strudel', 
+  'health' : '', 
+  'image' : './images/', 
+  'description' : '' 
+  },
+
+  { '_id' : 6, 
+  'titel' : 'Mango Chicken and Almond on Ry', 
+  'health' : '', 
+  'image' : './images/MangoChicken.jpg', 
+  'description' : '' 
+  },
+
+  { '_id' : 7, 
+  'titel' : 'Herbed Salmon and Cress on Wholegrain and Oats', 
+  'health' : '', 
+  'image' : './images/HerbSalmon.jpg', 
+  'description' : '' 
+  },
+
+  { '_id' : 8, 
+  'titel' : 'Ocean Trout and Watercress on Rye', 
+  'health' : '', 
+  'image' : './images/OceanTrout.jpg', 
+  'description' : '' 
+  },
+]);
+
+// Run a find command to view items sold on April 4th, 2014.
+db.recipes.find({ date: { $gte: new Date('2014-04-04'), $lt: new Date('2014-04-05') } });
+
+// Run an aggregation to view total sales for each product in 2014.
+const aggregation = [
+  { $match: { date: { $gte: new Date('2014-01-01'), $lt: new Date('2015-01-01') } } },
+  { $group: { _id : '$titel', totalSaleAmount: { $sum: { $multiply: [ '$health', '$image' ] } } } }
+];
+db.recipes.aggregate(aggregation);

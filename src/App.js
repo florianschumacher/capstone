@@ -2,9 +2,10 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 /* import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
  */
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components/macro'
 import getDataDummy from './components/services/getDataDummy'
 import ListBox from './components/modules/ListBox'
+import Search from './components/modules/SearchAlternate'
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
 
   useEffect(() => {
     getDataDummy()
-      .then((listBoxes) => setListBoxes(listBoxes.results))
+      .then((data) => console.log(data))
       .catch((error) => console.log(error))
   }, [])
 
@@ -24,15 +25,16 @@ function App() {
 
   return (
     <div className="App">
+      <Search />
       <Contentblock>
-        {listBoxes.map(({ name, patronus, image }) => (
+        {listBoxes.map(({ name, image }) => (
           <ListBox
             name={name}
             imgUrl={image}
-            patronus={patronus}
           />
         ))}
       </Contentblock>
+      <GlobalStyle />
     </div>
   )
 }
@@ -44,3 +46,9 @@ const Contentblock = styled.div`
   margin-top: 80px;
   margin-bottom: 120px;
 `
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    max-width: 375px;
+
+  }`
