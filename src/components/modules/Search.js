@@ -22,7 +22,7 @@ const Search = (props) => {
 
 
         return (
-            <container>
+            <FormWrapper>>
                 <form className="search">
                     <input
                         value={searchTerm}
@@ -32,10 +32,14 @@ const Search = (props) => {
                 </form>
 
                 <input type="submit" value="SEARCH" onKeyDown={handleKeyDown} />
-            </container>
+            </FormWrapper>
         )
     }
 }
 
 export default Search;
 
+const FormWrapper = styled.div`
+    background-color: 216, 50%, 96%;
+    background-size: 375px;
+    `
