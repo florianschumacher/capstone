@@ -6,6 +6,8 @@ import styled, { createGlobalStyle } from 'styled-components/macro'
 import getDataDummy from './components/services/getDataDummy'
 import ListBox from './components/modules/ListBox'
 import Search from './components/modules/SearchAlternate'
+import GlobalStyle from '../src/components/services/GlobalStyle'
+import Footer from './components/modules/Footer'
 
 function App() {
   const [listBoxes, setListBoxes] = useState([])
@@ -24,13 +26,14 @@ function App() {
 
   return (
     <div className="App">
+      <GlobalStyle />
       <Search />
       <Contentblock>
         {listBoxes.map(({ name, image }) => (
           <ListBox name={name} imgUrl={image} />
         ))}
       </Contentblock>
-      <GlobalStyle />
+      <Footer />
     </div>
   )
 }
@@ -43,8 +46,3 @@ const Contentblock = styled.div`
   margin-bottom: 120px;
 `
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    max-width: 375px;
-
-  }`

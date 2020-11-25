@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import styled from 'styled-components/macro';
 
 // THESE CREDENTIALS MUST BE STORED ON A SERVER, ONLY FOR TEMPORARY USE
 const API_URL = 'https://api.edamam.com/search'
@@ -43,16 +44,30 @@ class Search extends Component {
 
   render() {
     return (
-      <form>
+      <FormField>
         <input
           placeholder="Search for..."
           ref={(input) => (this.search = input)}
           onChange={this.handleInputChange}
         />
         <p>{this.state.query}</p>
-      </form>
+      </FormField>
     )
   }
 }
+
+const FormField = styled.div`
+  position: top;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.125rem;
+  max-width: 23.438rem;
+  width: 100%;
+  background-color: hsla(216, 50%, 96%);
+  z-index: 10;
+  border-style: none;
+  `
+
 
 export default Search
