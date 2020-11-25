@@ -10,20 +10,19 @@ import Search from './components/modules/SearchAlternate'
 import Navigation from './components/modules/Footer'
 
 
-
 function App() {
   const [listBoxes, setListBoxes] = useState([])
 
-  /* Aufruf der API, Variablennamen dürfen nicht mit bereits 
+  /* Aufruf der API, Variablennamen dürfen nicht mit bereits
   deklarierten Namen übereinstimmen, sondern müssen neu vergeben werden */
 
   useEffect(() => {
-    getDataDummy()
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error))
+    // getDataDummy()
+    //   .then((data) => console.log(data))
+    //   .catch((error) => console.log(error))
   }, [])
 
-  /* Ausgabe des API Aufrufs über das ListBox Item, 
+  /* Ausgabe des API Aufrufs über das ListBox Item,
   welches über das entsprechende Modul aufgerufen wurde*/
 
   return (
@@ -32,10 +31,7 @@ function App() {
       <Search />
       <Contentblock>
         {listBoxes.map(({ name, image }) => (
-          <ListBox
-            name={name}
-            imgUrl={image}
-          />
+          <ListBox name={name} imgUrl={image} />
         ))}
       </Contentblock>
       <Navigation />
@@ -43,20 +39,10 @@ function App() {
   )
 }
 
-export default App;
+export default App
 
 const Contentblock = styled.div`
   display: block;
   margin-top: 80px;
   margin-bottom: 120px;
-<<<<<<< Updated upstream
 `
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    max-width: 375px;
-
-  }`
-=======
-`
->>>>>>> Stashed changes
