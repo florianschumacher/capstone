@@ -1,7 +1,10 @@
 import styled from 'styled-components/macro'
 import React from 'react'
 
-export default function ListBox({ title, imgUrl }) {
+const DefaultImage = '../services/images/OceanTrout.jpg'
+
+const List = ({ title, imgUrl }) => {
+    const listimage = imgUrl.Listimage === "N/A" ? DefaultImage : imgUrl.Listimage;
     return (
         <ListItem>
             <img src={imgUrl} alt="" />
@@ -27,4 +30,4 @@ const ListItem = styled.section`
 
 console.log(ListItem)
 
-
+export default List;

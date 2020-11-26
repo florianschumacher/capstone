@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
  */
 import styled, { createGlobalStyle } from 'styled-components/macro'
 import getDataDummy from './components/services/getDataDummy'
-import ListBox from './components/modules/ListBox'
+import List from './components/modules/ListBox'
 import Search from './components/modules/SearchAlternate'
 import GlobalStyle from '../src/components/services/GlobalStyle'
 import Footer from './components/modules/Footer'
@@ -16,9 +16,9 @@ function App() {
   deklarierten Namen übereinstimmen, sondern müssen neu vergeben werden */
 
   useEffect(() => {
-    // getDataDummy()
-    //   .then((data) => console.log(data))
-    //   .catch((error) => console.log(error))
+    getDataDummy()
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error))
   }, [])
 
   /* Ausgabe des API Aufrufs über das ListBox Item,
@@ -30,7 +30,7 @@ function App() {
       <Search />
       <Contentblock>
         {listBoxes.map(({ name, image }) => (
-          <ListBox name={name} imgUrl={image} />
+          <List name={name} imgUrl={image} />
         ))}
       </Contentblock>
       <Footer />
