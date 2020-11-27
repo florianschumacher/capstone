@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-/* import styled, { keyframes } from 'styled-components/macro'; */
+import styled, { keyframes } from 'styled-components/macro';
 
 import ListElement from '../modules/ListBox'
 
@@ -10,7 +10,15 @@ const SearchLogic = () => {
 
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState('');
-    const [query, setQuery] = useState('chicken')
+    const [query, setQuery] = useState('low-carb food')
+    const [filterSearch, setFilterSearch] = useState('');
+
+    /*  */
+
+
+
+
+    /*  */
 
     useEffect(() => {
         getRecipes()
@@ -34,13 +42,34 @@ const SearchLogic = () => {
         setSearch('')
     }
 
+    /*  */
+
+    const Keto = getRecipes.filter('keto')
+    const Paleo = getRecipes.filter('paleo')
+    const LowCarb = getRecipes.filter('low-carb')
+
+    const getSearchFiltered = event => {
+        event.preventDefault()
+        setFilterSearch(search)
+        setSearch('')
+    }
+
+    /*  */
+
     return (
         <div className="SearchLogic">
-            <form onSubmit={getSearch} className="Search-form">
-                <input className="search-bar" type="text" value={search} onChange={updateSearch} />
-                <button className="search-button"
-                    type="submit">Search</button>
-            </form>
+            <FormWrapper>
+                <form onSubmit={getSearch} className="SearchForm">
+                    <input className="search-bar" type="text" value={search} onChange={updateSearch} />
+                    <button className="search-button"
+                        type="submit">Search</button>
+                </form>
+                <form onSubmit={getSearchFiltered} className="FilterForm">
+                    <button className="search-button-filter" onClick={() => Keto()}>Keto</button>
+                    <button className="search-button-filter" onClick={() => Paleo()}>Keto</button>
+                    <button className="search-button-filter" onClick={() => LowCarb()}>Keto</button>
+                </form>
+            </FormWrapper>
             {recipes.map(recipe => (
                 <ListElement
                     key={recipe.recipe.label}
@@ -50,9 +79,23 @@ const SearchLogic = () => {
                     ingredients={recipe.recipe.ingredients}
                 />
             ))}
+
         </div>
     )
 }
+
+const FormWrapper = styled.div`
+  position: top;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.125rem;
+  max-width: 23.438rem;
+  width: 100%;
+  background-color: hsla(216, 50%, 96%);
+  z-index: 10;
+  border-style: none;
+  `
 
 export default SearchLogic;
 
