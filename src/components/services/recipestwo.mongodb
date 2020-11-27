@@ -550,12 +550,12 @@ db.recipes.insertMany([
             }
         ],
         "steps": [
-            "ARRANGE chicken in a single layer in a large pot.",
+            "Arrange chicken in a single layer in a large pot.",
             "Add water to just cover.",
             "Bring to a boil over medium-high.",
             "Flip chicken, reduce heat to medium and simmer until cooked, about 6 more min.",
             "Cool.",
-            "STIR mayo with lemon zest, juice, curry and salt in large bowl.",
+            "Stir mayo with lemon zest, juice, curry and salt in large bowl.",
             "Using 2 forks, shred chicken, then stir into mayo mixture with mango, cranberries, green onions and celery.",
             "Divide among muffins with lettuce leaves",
             "Sandwich with tops"
