@@ -1,22 +1,26 @@
 import styled from 'styled-components/macro'
 import React from 'react'
 
-export default function ListBox({ title, imgUrl }) {
+const ListElement = ({ title, calories, image, ingredients }) => {
     return (
         <ListItem>
-            <img src={imgUrl} alt="" />
-            <h3>{title}</h3>
-
+            <h1>{title}</h1>
+            <ol>
+                {ingredients.map(ingredient => (
+                    <li>{ingredient.text}</li>
+                ))}
+            </ol>
+            <p>{calories}</p>
+            <img src={image} alt="" />
         </ListItem>
     )
 }
-
 
 const ListItem = styled.section`
    display: grid;
     flex-direction: column;
     justify-content: space-around;
-    width: 100%;
+    max-width: 375px;
     bottom: 2px;
     padding: 10px;
     border: 1px solid gray;
@@ -27,4 +31,4 @@ const ListItem = styled.section`
 
 console.log(ListItem)
 
-
+export default ListElement;
