@@ -11,14 +11,6 @@ const SearchLogic = () => {
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState('');
     const [query, setQuery] = useState('low-carb food')
-    const [filterSearch, setFilterSearch] = useState('');
-
-    /*  */
-
-
-
-
-    /*  */
 
     useEffect(() => {
         getRecipes()
@@ -42,20 +34,6 @@ const SearchLogic = () => {
         setSearch('')
     }
 
-    /*  */
-
-    const Keto = getRecipes.filter('keto')
-    const Paleo = getRecipes.filter('paleo')
-    const LowCarb = getRecipes.filter('low-carb')
-
-    const getSearchFiltered = event => {
-        event.preventDefault()
-        setFilterSearch(search)
-        setSearch('')
-    }
-
-    /*  */
-
     return (
         <div className="SearchLogic">
             <FormWrapper>
@@ -64,10 +42,10 @@ const SearchLogic = () => {
                     <button className="search-button"
                         type="submit">Search</button>
                 </form>
-                <form onSubmit={getSearchFiltered} className="FilterForm">
-                    <button className="search-button-filter" onClick={() => Keto()}>Keto</button>
-                    <button className="search-button-filter" onClick={() => Paleo()}>Keto</button>
-                    <button className="search-button-filter" onClick={() => LowCarb()}>Keto</button>
+                <form onSubmit={getSearch} className="FilterForm">
+                    <button className="search-button-filter" onClick={() => setQuery('low-carb')}>Low Carb</button>
+                    <button className="search-button-filter" onClick={() => setQuery('keto')}>Keto</button>
+                    <button className="search-button-filter" onClick={() => setQuery('paleo')}>Paleo</button>
                 </form>
             </FormWrapper>
             {recipes.map(recipe => (
