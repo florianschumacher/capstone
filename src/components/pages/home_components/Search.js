@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components/macro';
 
-import ListElement from '../modules/ListBox'
+import ListElement from './ListBox'
 
 const SearchLogic = () => {
 
@@ -10,7 +10,7 @@ const SearchLogic = () => {
 
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState('');
-    const [query, setQuery] = useState('low-carb food')
+    const [query, setQuery] = useState('low-carb, food')
 
     useEffect(() => {
         getRecipes()
@@ -36,21 +36,28 @@ const SearchLogic = () => {
 
     return (
         <div className="SearchLogic">
-            <FormWrapper>
+            <SearchWrapper>
                 <form onSubmit={getSearch} className="SearchForm">
                     <input className="search-bar" type="text" value={search} onChange={updateSearch} />
                     <button className="search-button"
                         type="submit">Search</button>
                 </form>
+            </SearchWrapper>
+            <TagWrapper>
                 <form onSubmit={getSearch} className="FilterForm">
-                    <button className="search-button-filter" onClick={() => setQuery('low-carb')}>Low Carb</button>
-                    <button className="search-button-filter" onClick={() => setQuery('keto')}>Keto</button>
-                    <button className="search-button-filter" onClick={() => setQuery('paleo')}>Paleo</button>
+                    <button className="search-button-filter" onClick={() => setQuery('low-carb, Main course')}>Low Carb</button>
+                    <button className="search-button-filter" onClick={() => setQuery('keto, Main course')}>Keto</button>
+                    <button className="search-button-filter" onClick={() => setQuery('paleo, Main course')}>Paleo</button>
+                    <button className="search-button-filter" onClick={() => setQuery('gluten-free , Main course')}>Gluten free</button>
+                    <button className="search-button-filter" onClick={() => setQuery('high-protein, Main course')}>high-protein</button>
+                    <button className="search-button-filter" onClick={() => setQuery('balanced, Main course')}>Balanced</button>
+                    <button className="search-button-filter" onClick={() => setQuery('dairy-free, Main course')}>Dairy-free</button>
                 </form>
-            </FormWrapper>
-            {recipes.map(recipe => (
+            </TagWrapper>
+
+            {recipes.map((recipe, index) => (
                 <ListElement
-                    key={recipe.recipe.label}
+                    key={index}
                     title={recipe.recipe.label}
                     calories={recipe.recipe.calories}
                     image={recipe.recipe.image}
@@ -58,11 +65,12 @@ const SearchLogic = () => {
                 />
             ))}
 
+
         </div>
     )
 }
 
-const FormWrapper = styled.div`
+const SearchWrapper = styled.div`
   position: top;
   display: flex;
   align-items: center;
@@ -74,6 +82,21 @@ const FormWrapper = styled.div`
   z-index: 10;
   border-style: none;
   `
+
+const TagWrapper = styled.div`
+position: top;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 3.125rem;
+max-width: 23.438rem;
+width: 100%;
+background-color: hsla(216, 50%, 96%);
+z-index: 10;
+border-style: none;
+`
+
+
 
 export default SearchLogic;
 
