@@ -6,11 +6,6 @@ const ListElement = ({ title, calories, image, ingredients }) => {
     return (
         <ListItem>
             <h1>{title}</h1>
-            <ol>
-                {ingredients.map((ingredient, index) => (
-                    <li key={index}>{ingredient.text}</li>
-                ))}
-            </ol>
             <p>{calories}</p>
 
             <Link

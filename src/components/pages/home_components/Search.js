@@ -1,9 +1,31 @@
+// functional
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components/macro';
 
+// pages
 import ListElement from './ListBox'
 
+// styles
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        marginTop: '5px',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        padding: '2px',
+        '& > *': {
+            margin: theme.spacing(0),
+            width: '25ch',
+        },
+    },
+}));
+
+
 const SearchLogic = () => {
+    const classes = useStyles();
 
     const APP_ID = '73198c18'
     const APP_KEY = '971f353d5c972855c1d4c1f8575bb7c2'
@@ -37,21 +59,20 @@ const SearchLogic = () => {
     return (
         <div className="SearchLogic">
             <SearchWrapper>
-                <form onSubmit={getSearch} className="SearchForm">
-                    <input className="search-bar" type="text" value={search} onChange={updateSearch} />
-                    <button className="search-button"
-                        type="submit">Search</button>
+                <form onSubmit={getSearch} className={classes.root} noValidate autoComplete="off">
+                    <TextField id="outlined-size-small" label="Search" variant="outlined" className="search-bar" type="text" value={search} onChange={updateSearch} size="small" />
+
                 </form>
             </SearchWrapper>
             <TagWrapper>
                 <form onSubmit={getSearch} className="FilterForm">
-                    <button className="search-button-filter" onClick={() => setQuery('low-carb, Main course')}>Low Carb</button>
-                    <button className="search-button-filter" onClick={() => setQuery('keto, Main course')}>Keto</button>
-                    <button className="search-button-filter" onClick={() => setQuery('paleo, Main course')}>Paleo</button>
-                    <button className="search-button-filter" onClick={() => setQuery('gluten-free , Main course')}>Gluten free</button>
-                    <button className="search-button-filter" onClick={() => setQuery('high-protein, Main course')}>high-protein</button>
-                    <button className="search-button-filter" onClick={() => setQuery('balanced, Main course')}>Balanced</button>
-                    <button className="search-button-filter" onClick={() => setQuery('dairy-free, Main course')}>Dairy-free</button>
+                    <Button variant="contained" size="small" color="primary" className={classes.margin} onClick={() => setQuery('low-carb, Main course')}>Low Carb</Button>
+                    <Button variant="contained" size="small" color="primary" className={classes.margin} onClick={() => setQuery('keto-friendly, Main course')}>Keto</Button>
+                    <Button variant="contained" size="small" color="primary" className={classes.margin} onClick={() => setQuery('paleo, Main course')}>Paleo</Button>
+                    <Button variant="contained" size="small" color="primary" className={classes.margin} onClick={() => setQuery('gluten-free, Main course')}>Gluten free</Button>
+                    <Button variant="contained" size="small" color="primary" className={classes.margin} onClick={() => setQuery('high-protein, Main course')}>high-protein</Button>
+                    <Button variant="contained" size="small" color="primary" className={classes.margin} onClick={() => setQuery('balanced, Main course')}>Balanced</Button>
+                    <Button variant="contained" size="small" color="primary" className={classes.margin} onClick={() => setQuery('dairy-free, Main course')}>Dairy-free</Button>
                 </form>
             </TagWrapper>
 
@@ -70,13 +91,18 @@ const SearchLogic = () => {
     )
 }
 
+
+
+
+
 const SearchWrapper = styled.div`
+  margin-top: -5rem;
   position: top;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 3.125rem;
-  max-width: 23.438rem;
+  max-width: 100%;
   width: 100%;
   background-color: hsla(216, 50%, 96%);
   z-index: 10;
@@ -85,14 +111,16 @@ const SearchWrapper = styled.div`
 
 const TagWrapper = styled.div`
 position: top;
+padding: 1px;
 display: flex;
+flex-wrap: nowrap;
 align-items: center;
-justify-content: center;
-height: 3.125rem;
-max-width: 23.438rem;
+justify-content: space-between;
+/* height: 3.125rem; */
+
 width: 100%;
 background-color: hsla(216, 50%, 96%);
-z-index: 10;
+z-index: 5;
 border-style: none;
 `
 

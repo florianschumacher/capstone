@@ -1,45 +1,59 @@
 import styled from "styled-components/macro";
 import React from "react";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import { makeStyles } from "@material-ui/core/styles";
+import { createMuiTheme, makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+
+import Divider from '@material-ui/core/Divider';
+
+import BookmarksIcon from '@material-ui/icons/Bookmarks';
+import RestaurantMenuIcon from '@material-ui/icons/RestaurantMenu';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import PersonIcon from '@material-ui/icons/Person';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    bottom: "0.313rem",
+    zIndex: "20",
+    width: "fit-content",
+    bottom: "0rem",
+    color: "red",
     position: "fixed",
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     alignItems: "center",
     "& > *": {
-      margin: theme.spacing(1),
+      margin: theme.spacing(0, -1),
     },
+
   },
 }));
 
+
+
 export default function FooterNavigation({ onNavigate }) {
   const classes = useStyles();
+  const [value, setValue] = React.useState(0);
 
   return (
-    <div className={classes.root}>
-      <ButtonGroup
-        variant="text"
-        color="primary"
-        aria-label="text primary button group"
-      >
-        <Button component={Link} to="/" >Discover</Button>
 
-        <Button component={Link} to="/bookmarks" >Bookmarks</Button>
+    <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue); }} showLabels className={classes.root}>
 
-        <Button component={Link} to="/coaching" >Coaching</Button>
+      <BottomNavigationAction component={Link} to="/" label="Discover" value="Discover" icon={<RestaurantMenuIcon />} />
+      <Divider orientation="vertical" flexItem />
+      <BottomNavigationAction component={Link} to="/bookmarks" label="Bookmarks" value="Bookmarks" icon={<BookmarksIcon />} />
+      <Divider orientation="vertical" flexItem />
+      <BottomNavigationAction component={Link} to="/coaching" label="Coaching" value="Coaching" icon={<SupervisorAccountIcon />} />
+      <Divider orientation="vertical" flexItem />
+      <BottomNavigationAction component={Link} to="/progress" label="Progress" value="Progress" icon={<TrendingUpIcon />} />
+      <Divider orientation="vertical" flexItem />
+      <BottomNavigationAction component={Link} to="/profle" label="Profile" value="Profile" icon={<PersonIcon />} />
 
-        <Button component={Link} to="/progress">Progress</Button>
+    </BottomNavigation>
 
-        <Button component={Link} to="/profile">Profile</Button>
-
-      </ButtonGroup>
-    </div>
   );
 }
 
@@ -52,16 +66,5 @@ export default function FooterNavigation({ onNavigate }) {
   max-width: 23.438rem;
   width: 100%;
   bottom: 0.313rem;
-`;
-
-const Button = styled.button`
-  display: block;
-  height: 2.813;
-  background-color: yellow;
-  font-weight: 800;
-  color: hsla(0, 0%, 8%)
-  border-radius: 0.25rem;
-  border-style: none;
-  background-color: hsla(216, 50%, 96%);
-  box-shadow: 0 0.188rem 0.25rem hsla(203, 39%, 88%)
 `; */
+
