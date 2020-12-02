@@ -1,30 +1,48 @@
+//Functions
 import React from 'react'
 import styled from 'styled-components/macro'
-import SearchLogic from './components/modules/Search'
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+// Pages, Styles & Modules
+import Discovery from './components/pages/Discover'
+import Bookmarks from './components/pages/Bookmarks'
+import Coaching from './components/pages/Coaching'
+import Progress from './components/pages/Progress'
+import Profile from './components/pages/Profile'
 import GlobalStyle from '../src/components/services/GlobalStyle'
-import Footer from './components/modules/Footer'
+import FooterNavigation from './components/modules/Footernavigation'
+import Recipes from './components/pages/Recipes'
 
-function App() {
-
+export default function App() {
   return (
-    <div className="App">
-      <GlobalStyle />
-      <SearchLogic />
-      <Contentblock>
-        {/*         {listBoxes.map(({ name, image }) => (
-          <List name={name} imgUrl={image} />
-        ))} */}
-      </Contentblock>
-      <Footer />
-    </div>
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/">
+            <Discovery />
+          </Route>
+          <Route path="/bookmarks">
+            <Bookmarks />
+          </Route>
+          <Route path="/coaching">
+            <Coaching />
+          </Route>
+          <Route path="/progress">
+            <Progress />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/recipes" >
+            <Recipes />
+          </Route>
+        </Switch>
+        <FooterNavigation />
+      </div>
+
+
+    </Router>
   )
 }
 
-export default App
-
-const Contentblock = styled.div`
-  display: block;
-  margin-top: 80px;
-  margin-bottom: 120px;
-`
 
