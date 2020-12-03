@@ -1,6 +1,5 @@
-import styled from "styled-components/macro";
 import React from "react";
-import { createMuiTheme, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -41,7 +40,6 @@ export default function FooterNavigation({ onNavigate }) {
   return (
 
     <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue); }} showLabels className={classes.root}>
-
       <BottomNavigationAction component={Link} to="/" label="Discover" value="Discover" icon={<RestaurantMenuIcon />} />
       <Divider orientation="vertical" flexItem />
       <BottomNavigationAction component={Link} to="/bookmarks" label="Bookmarks" value="Bookmarks" icon={<BookmarksIcon />} />

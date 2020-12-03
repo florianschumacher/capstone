@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 const ListElement = ({ title, calories, image, ingredients }) => {
     return (
         <ListItem>
-            <h1>{title}</h1>
-            <p>{calories}</p>
+            <h2>{title}</h2>
+            <p>{calories.toFixed(0)} Calories</p>
 
             <Link
                 to={{
@@ -20,19 +20,42 @@ function urlTitle(title) {
     return encodeURI(title.toLowerCase().replace(/ /g, '-'))
 }
 
+
 const ListItem = styled.section`
-   display: grid;
+    margin-top: 3rem;
+    margin-bottom: -2rem;
+    display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    max-width: 375px;
-    bottom: 2px;
-    padding: 10px;
-    border: 1px solid gray;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    background-color: s;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: 21.875rem;
+    max-width: 21.875rem;
+    bottom: 0.125rem;
+    border: 0.0125rem solid gray;
+    border-radius: 0.1875rem;
+    background: #b28c4b;
+    box-shadow: 0rem 0.25rem 0.5rem #b28c40;
+    h2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-bottom: -0.3125rem;
+        margin-right: 1.5rem;
+        margin-left: 1.5rem;
+    };
+    p {
+        font-size: 1.125rem;
+        align-self: center;
+    };
+    img {
+        border-radius: 0.1875rem;
+        border: solid;
+        border-color: #fff;
+        border-width: 0.125rem;
+    };
     `
 
-console.log(ListItem)
 
 export default ListElement;
