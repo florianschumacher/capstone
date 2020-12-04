@@ -48,7 +48,7 @@ export default function FooterNavigation({ onNavigate }) {
       <Divider orientation="vertical" flexItem />
       <BottomNavigationAction component={Link} to="/progress" label="Progress" value="Progress" icon={<TrendingUpIcon />} />
       <Divider orientation="vertical" flexItem />
-      <BottomNavigationAction component={Link} to="/profle" label="Profile" value="Profile" icon={<PersonIcon />} />
+      <BottomNavigationAction component={Link} to="/profile" label="Profile" value="Profile" icon={<PersonIcon />} />
 
     </BottomNavigation>
 
