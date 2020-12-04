@@ -9,10 +9,17 @@ export default function Recipes() {
             <h1>
                 {title}
             </h1>
-            <p>
-                {calories}
-            </p>
             <img src={image} alt="" />
+            <p>
+                {calories.toFixed(0)}
+            </p>
+            <ul>
+                <ol>
+                    {ingredients.map((ingredient, index) => (
+                        <li key={index}>{ingredient.text}</li>
+                    ))}
+                </ol>
+            </ul>
         </>
     )
 }
