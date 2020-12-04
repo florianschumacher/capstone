@@ -17,7 +17,7 @@ const Discovery = () => {
 export default Discovery
 
 const HomeWrapper = styled.div`
-  display: block;
+
   margin-top: 80px;
   margin-bottom: 120px;
 `

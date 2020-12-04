@@ -38,19 +38,20 @@ const SearchLogic = () => {
         <div className="SearchLogic">
             <SearchWrapper>
                 <form onSubmit={getSearch} className="SearchForm">
-                    <StyledInput className="search-bar" default="Find healthy recipes" type="text" value={search} onChange={updateSearch} borders="none" />
+                    <StyledInput className="search-bar" placeholder="Find healthy recipes" type="text" value={search} onChange={updateSearch} borders="none" />
                     {/* <button className="search-button"
                         type="submit">Search</button> */}
                 </form>
             </SearchWrapper>
-            <TagWrapper onSubmit={getSearch} className="FilterForm">
+            <TagWrapper onSubmit={getSearch} className="FilterForm" >
+                <Button onClick={() => setQuery('low-carb, food')}>Reset</Button>
                 <Button onClick={() => setQuery('low-carb, Main course')}>Low Carb</Button>
-                {/* <Button onClick={() => setQuery('keto-friendly, Main course')}>Keto friendly</Button> */}
-                <Button onClick={() => setQuery('paleo, Main course')}>Paleo</Button>
+                <Button onClick={() => setQuery('vegetarian, Main course')}>Vegetarian</Button>
+                <Button onClick={() => setQuery('vegan, Main course')}>Vegan</Button>
                 <Button onClick={() => setQuery('gluten-free, Main course')}>Gluten Free</Button>
                 <Button onClick={() => setQuery('high-protein, Main course')}>High Protein</Button>
                 {/* <Button onClick={() => setQuery('balanced, Main course')}>Balanced</Button> */}
-                <Button onClick={() => setQuery('dairy-free, Main course')}>Dairy free</Button>
+                {/* <Button onClick={() => setQuery('dairy-free, Main course')}>Dairy free</Button> */}
             </TagWrapper>
             <ListWrapper>
                 {recipes.map((recipe, index) => (
@@ -63,8 +64,6 @@ const SearchLogic = () => {
                     />
                 ))}
             </ListWrapper>
-
-
         </div>
     )
 }
@@ -80,42 +79,42 @@ const SearchWrapper = styled.div`
     width: 100%;
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 33%, rgba(178,140,64,1) 33%);
-    z-index: 97;
+    z-index: 99;
     border-style: none;
     box-shadow: 0.25rem 0.25rem 0.5rem #b28c40;
   `
 
 const TagWrapper = styled.div`
-    position: fixed;
-    margin-top: -1.75rem;
-    margin-bottom: 0.3rem;
+    position: absolute;
+    margin-top: -1.5rem;
+    margin-bottom: 0rem;
     align-items: center;
     display: flex;
     flex-wrap: nowrap;
-    height: 3.5rem;
+    height: 2.75rem;
     max-width: 23.438rem;
     width: 100%;
     z-index: 98;
     border-top:1px;
     border-color: #b28c40;
     border-radius:0px;
-/*     background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 33%, rgba(178,140,64,1) 33%);
-    box-shadow: 0.25rem 0.25rem 0.5rem silver; */
+    background: lightgrey;
+    justify-content: center;
 `
 
 const Button = styled.button`
     background-color: hsl(27, 19%, 94%);
-    width: 4.75rem;
-    min-height: 2.75rem;
-    max-height: 2.75rem;
-    border-radius: 2px;
+    min-height: 1.5rem;
+    max-height: 1.5rem;
+    border-radius: 1.5rem;
     border: none;
-    box-shadow: 0.125rem 0.125rem 0.125rem;
+    box-shadow: 0.125rem 0.125rem 0.3rem;
     margin-left: 0.125rem;
     margin-right: 0.125rem;
     padding: 0.125rem;
-    font-size: 1rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    font-size: 0.7rem;
     /* color:  hsla(0, 0%, 89%, 0.12); */
     cursor: pointer;
 `
