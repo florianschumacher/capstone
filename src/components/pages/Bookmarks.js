@@ -1,7 +1,9 @@
+import Header from '../modules/Header'
+
 const Booking = () => {
     return (
         <div>
-            <h1>BookingBooking</h1>
+            <Header title="Bookmarks" />
         </div>
     )
 }

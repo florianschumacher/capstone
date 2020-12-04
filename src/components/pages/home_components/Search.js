@@ -87,7 +87,7 @@ const SearchWrapper = styled.div`
 
 const TagWrapper = styled.div`
     position: fixed;
-    margin-top: -1.975rem;
+    margin-top: -1.75rem;
     margin-bottom: 0.3rem;
     align-items: center;
     display: flex;
@@ -99,9 +99,9 @@ const TagWrapper = styled.div`
     border-top:1px;
     border-color: #b28c40;
     border-radius:0px;
-    background: rgb(2,0,36);
+/*     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 33%, rgba(178,140,64,1) 33%);
-    box-shadow: 0.25rem 0.25rem 0.5rem silver;
+    box-shadow: 0.25rem 0.25rem 0.5rem silver; */
 `
 
 const Button = styled.button`
@@ -111,7 +111,7 @@ const Button = styled.button`
     max-height: 2.75rem;
     border-radius: 2px;
     border: none;
-    box-shadow: 0.25rem 0.25rem 0.25rem;
+    box-shadow: 0.125rem 0.125rem 0.125rem;
     margin-left: 0.125rem;
     margin-right: 0.125rem;
     padding: 0.125rem;

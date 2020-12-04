@@ -1,7 +1,9 @@
+import Header from '../modules/Header'
+
 const Progress = () => {
     return (
         <div>
-            Progress
+            <Header title="Progress" />
         </div>
     )
 }

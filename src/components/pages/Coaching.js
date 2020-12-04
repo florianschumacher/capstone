@@ -1,7 +1,9 @@
+import Header from '../modules/Header'
+
 const Coaching = () => {
     return (
         <div>
-            Coaching
+            <Header title="Coaching" />
         </div>
     )
 }
