@@ -16,8 +16,8 @@ const Header = ({ title }) => {
 const Head = styled.div`
     position: fixed;
     margin: 0;
-    margin-left: -8px;
-    margin-top: -8px;
+    margin-left: 0px;
+    margin-top: 0px;
     padding: 0;
     display: flex;
     align-items: center;

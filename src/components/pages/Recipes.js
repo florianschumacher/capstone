@@ -1,4 +1,3 @@
-import { duration } from "@material-ui/core";
 import { useLocation } from "react-router-dom";
 import styled from 'styled-components/macro';
 
@@ -44,15 +43,15 @@ export default function Recipes() {
                     </InfoElement>
                     <InfoElement>
                         <p>
-                            {duration}
-                        </p>
-                    </InfoElement>
-                    <InfoElement>
-                        <p>
                             {portions} <br />Portions
                     </p>
                     </InfoElement>
                 </InfoWrapper>
+                <TimeElement>
+                    <p>
+                        Preperation Time <br /> {duration}
+                    </p>
+                </TimeElement>
                 <ul>
                     {ingredients.map((ingredient, index) => (
                         <Ingredient title={ingredient.text} key={index} />
@@ -63,9 +62,9 @@ export default function Recipes() {
     )
 }
 const Wrapper = styled.section`
-    display: flex;
-    margin-top: 0.5rem;
-    margin-left: 0.5rem;`
+    display: fixed;
+    margin-top: 0rem;
+    margin-left: 0rem;`
 
 const RecipeWrapper = styled.section`
     margin-top: 2rem;
@@ -107,7 +106,9 @@ const InfoWrapper = styled.div`
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     display: flexbox;
-    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    /* flex-direction: row; */
     `
 
 const InfoElement = styled.div`
@@ -116,7 +117,24 @@ margin-left: 0.125rem;
 margin-right: 0.125rem;
 padding-left: 0.125rem;
 padding-right: 0.125rem;
+width: 31%;
+text-align: center;
 display: flexbox;
+flex-direction: row;
+justify-content: center;
+font-size: 0.75rem;
+background-color: white;
+font-size: 0.5rem;
+`
+const TimeElement = styled.div`
+width: 100%;
+margin-top: 0.5rem;
+margin-left: 0.125rem;
+margin-right: 0.125rem;
+padding-left: 0.125rem;
+padding-right: 0.125rem;
+display: flexbox;
+text-align: center;
 flex-direction: row;
 justify-content: center;
 font-size: 0.75rem;
