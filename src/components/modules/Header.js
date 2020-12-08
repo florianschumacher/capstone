@@ -28,7 +28,8 @@ const Head = styled.div`
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 33%, rgba(178,140,64,1) 33%);
     z-index: 97;
     border-style: none;
-    box-shadow: 0.25rem 0.25rem 0.5rem #b28c40;
+    border-bottom: 0.25rem white;
+    box-shadow: 0.25rem 0.25rem 0.25rem #1d1f2a;
     h1 {
         display: flex;
         justify-content: right;

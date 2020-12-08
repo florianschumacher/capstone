@@ -14,20 +14,21 @@ import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import PersonIcon from '@material-ui/icons/Person';
 
 
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    zIndex: "20",
-    width: "fit-content",
+    zIndex: "99",
+    minWidth: "375px",
     bottom: "0rem",
-    color: "red",
     position: "fixed",
     display: "flex",
-    flexDirection: "row",
+    /*     flexDirection: "row", */
     alignItems: "center",
+    justifyContent: "end",
     "& > *": {
       margin: theme.spacing(0, -1),
     },
-
   },
 }));
 

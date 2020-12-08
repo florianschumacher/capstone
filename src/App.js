@@ -12,34 +12,40 @@ import Progress from './components/pages/Progress'
 import Profile from './components/pages/Profile'
 import FooterNavigation from './components/modules/Footernavigation'
 import Recipes from './components/pages/Recipes'
+import GlobylStyles from './components/services/GlobalStyle'
+import GlobalStyle from './components/services/GlobalStyle';
 
 const App = () => {
   return (
-    <div className="app">
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Discovery />
-          </Route>
-          <Route path="/bookmarks">
-            <Bookmarks />
-          </Route>
-          <Route path="/coaching">
-            <Coaching />
-          </Route>
-          <Route path="/progress">
-            <Progress />
-          </Route>
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          <Route path="/recipes" >
-            <Recipes />
-          </Route>
-        </Switch>
-        <FooterNavigation />
-      </Router>
-    </div>
+
+    <Router>
+      <GlobalStyle />
+      <Switch>
+        <Route exact path="/">
+          <Discovery />
+        </Route>
+        <Route path="/bookmarks">
+          <Bookmarks />
+        </Route>
+        <Route path="/coaching">
+          <Coaching />
+        </Route>
+        <Route path="/progress">
+          <Progress />
+        </Route>
+        <Route path="/profile">
+          <Profile />
+        </Route>
+        <Route path="/recipes">
+          <Recipes />
+        </Route>
+      </Switch>
+      <FooterNavigation />
+    </Router>
+
+
+
+
   )
 }
 

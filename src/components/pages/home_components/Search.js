@@ -1,16 +1,53 @@
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components/macro';
 
+import { makeStyles } from '@material-ui/core/styles';
+import LinearBuffer from '@material-ui/core/CircularProgress';
+
 import ListElement from './ListBox'
+import Progress from '../Progress';
+
+const LoadingWrapper = styled.div`
+position: fixed;
+display: flex;
+align-items: center;
+justify-content: center;   
+z-Index: 99;
+align-self: center;
+`
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        position: 'fixed',
+        display: 'flex',
+        alignitems: 'center',
+        justifycontent: 'center',
+        paddingLeft: '10.375rem',
+        paddingTop: '15.875rem',
+
+        '& > * + *': {
+            marginLeft: theme.spacing(1),
+        },
+    },
+}));
+
 
 const SearchLogic = () => {
 
+    // Loading Spinner Code //
+    const [loading, setLoading] = useState(false)
+    const now = 10;
+    const classes = useStyles();
+    const [value, setValue] = React.useState(0);
+    // Loading Spinner Code //
     const APP_ID = '73198c18'
     const APP_KEY = '971f353d5c972855c1d4c1f8575bb7c2'
 
-    const [recipes, setRecipes] = useState([]);
-    const [search, setSearch] = useState('');
+    const [recipes, setRecipes] = useState([])
+    const [search, setSearch] = useState('')
     const [query, setQuery] = useState('low-carb, food')
+
 
     useEffect(() => {
         getRecipes()
@@ -20,12 +57,11 @@ const SearchLogic = () => {
         const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`)
         const data = await response.json()
         setRecipes(data.hits)
-        console.log(data.hits)
+        setLoading(true)
     }
 
     const updateSearch = event => {
         setSearch(event.target.value)
-        console.log(search)
     }
 
     const getSearch = event => {
@@ -35,6 +71,7 @@ const SearchLogic = () => {
     }
 
     return (
+
         <div className="SearchLogic">
             <SearchWrapper>
                 <form onSubmit={getSearch} className="SearchForm">
@@ -61,12 +98,21 @@ const SearchLogic = () => {
                         calories={recipe.recipe.calories}
                         image={recipe.recipe.image}
                         ingredients={recipe.recipe.ingredients}
+                        totalWeight={recipe.recipe.totalWeight}
+                        totalTime={recipe.recipe.totalTime}
+                        portions={recipe.recipe.yield}
                     />
                 ))}
             </ListWrapper>
+            <LoadingWrapper className={classes.root}>
+                {loading ? (setRecipes) : (
+                    <LinearBuffer />
+                )}
+            </LoadingWrapper>
         </div>
     )
 }
+
 
 const SearchWrapper = styled.div`
     position: fixed;

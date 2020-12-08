@@ -8,7 +8,6 @@ import Header from '../modules/Header'
 const Discovery = () => {
     return (
         <HomeWrapper>
-            <GlobalStyle />
             <SearchLogic />
         </HomeWrapper>
     )

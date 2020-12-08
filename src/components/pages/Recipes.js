@@ -1,63 +1,125 @@
+import { duration } from "@material-ui/core";
 import { useLocation } from "react-router-dom";
 import styled from 'styled-components/macro';
 
+import Ingredient from "./page_components/Ingredient";
+import Header from '../modules/Header'
 
 export default function Recipes() {
     const location = useLocation()
-    const { title, calories, image, ingredients } = location.state
+    const { title, calories, image, ingredients, portions, totalWeight, totalTime } = location.state
+    let duration = totalTime
+    if (duration > 0) {
+        const min = parseInt(totalTime, 10);
+        let hours = Math.floor(min / 3600);
+        let minutes = Math.floor((min - (hours * 3600)) / 60);
+
+        duration = (hours) + ' hrs ' + (minutes) + ' mins';
+    } else {
+        duration = 'No Information on Duration'
+    }
+
+
     return (
-        <RecipeWrapper>
-            <h1>
-                {title}
-            </h1>
-            <img src={image} alt="" />
-            <p>
-                {calories.toFixed(0)}
-            </p>
-            <ul>
-                <li>
+        <div>
+            <Wrapper>
+                <Header title="Receipt" />
+            </Wrapper>
+
+            <RecipeWrapper>
+                <h2>
+                    {title}
+                </h2>
+                <img src={image} alt="" />
+                <InfoWrapper>
+                    <InfoElement>
+                        <p>
+                            {calories.toFixed(0)} <br />Calories
+                    </p>
+                    </InfoElement>
+                    <InfoElement>
+                        <p>
+                            {totalWeight?.toFixed(0)} <br />Gramms
+                    </p>
+                    </InfoElement>
+                    <InfoElement>
+                        <p>
+                            {duration}
+                        </p>
+                    </InfoElement>
+                    <InfoElement>
+                        <p>
+                            {portions} <br />Portions
+                    </p>
+                    </InfoElement>
+                </InfoWrapper>
+                <ul>
                     {ingredients.map((ingredient, index) => (
-                        <li key={index}>{ingredient.text}</li>
+                        <Ingredient title={ingredient.text} key={index} />
                     ))}
-                </li>
-            </ul>
-        </RecipeWrapper>
+                </ul>
+            </RecipeWrapper>
+        </div >
     )
 }
-
+const Wrapper = styled.section`
+    display: flex;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;`
 
 const RecipeWrapper = styled.section`
-    margin-top: 3rem;
-    margin-bottom: -2rem;
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     align-self: center;
-    width: 21.875rem;
-    max-width: 21.875rem;
+    width: 100%;
     bottom: 0.125rem;
-    border: 0.0125rem solid gray;
     border-radius: 0.1875rem;
-    background: #b28c4b;
-    box-shadow: 0rem 0.25rem 0.5rem #b28c40;
+    background: whitesmoke;
     h2 {
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        margin-bottom: -0.3125rem;
-        margin-right: 1.5rem;
-        margin-left: 1.5rem;
+        margin-bottom: 0.3125rem;
+        margin-right: 0.5rem;
+        margin-left: 0.5rem;
     };
     p {
         font-size: 1.125rem;
         padding-left: -0.3125rem;
+        
     };
     img {
         border-radius: 0.1875rem;
         border: solid;
         border-color: #fff;
         border-width: 0.125rem;
+        max-height: 15rem;
+        min-width: 21.875rem;
+        object-fit: cover;
     };
     `
+const InfoWrapper = styled.div`
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    display: flexbox;
+    flex-direction: row;
+    `
+
+const InfoElement = styled.div`
+margin-top: 0.5rem;
+margin-left: 0.125rem;
+margin-right: 0.125rem;
+padding-left: 0.125rem;
+padding-right: 0.125rem;
+display: flexbox;
+flex-direction: row;
+justify-content: center;
+font-size: 0.75rem;
+background-color: white;
+font-size: 0.5rem;
+`

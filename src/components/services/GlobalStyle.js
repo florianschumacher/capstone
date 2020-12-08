@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: hsla(0, 0%, 8%);
     font-size: 112.5%;
+    min-width: 23.4375rem;
   };
   h1 {
     font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
