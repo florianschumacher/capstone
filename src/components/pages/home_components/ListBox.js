@@ -2,13 +2,13 @@ import styled from 'styled-components/macro'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ListElement = ({ title, calories, image, ingredients }) => {
+const ListElement = ({ title, calories, image, ingredients, portions, totalWeight, totalTime }) => {
     return (
         <ListItem>
             <Link
                 to={{
                     pathname: `/recipes/${urlTitle(title)}`,
-                    state: { title, calories, image, ingredients }
+                    state: { title, calories, image, ingredients, portions, totalWeight, totalTime }
                 }}> <h2>{title}</h2>
                 <img src={image} alt="" /></Link>
             {/* <p>{calories.toFixed(0)} Calories</p> */}
@@ -44,12 +44,12 @@ const ListItem = styled.section`
         z-index: 1;
         border-radius: 0.1875rem;
         background: #b28c4b;
-        box-shadow: 0rem 0.25rem 0.5rem #b28c40; */
+        box-shadow: 0rem 0.25rem 0.5rem #b28c40; 
         };
         p {
         padding-top: 0rem;
         font-size: 1rem;
-        align-self: right;
+                align-self: right;
         z-index: 2;
         color: whitesmoke;
         background-color: hsla(50, 33%, 25%, 0.75);
@@ -65,13 +65,14 @@ const ListItem = styled.section`
         padding-bottom: 0.5rem;
         min-width: 22rem;
        /*  margin-bottom: -0.3125rem; */
-        margin-right: 1.5rem;
-        font-size: 1.5rem;
+        margin-left: 0.1rem;
+        margin-right: 1.4rem;
+        font-size: 1.2rem;
+        font-weight: 200;
         z-index: 2;
         color: whitesmoke;
         background-color: hsla(50, 33%, 25%, 0.75);
                  };
-    
     `
 
 export default ListElement;
