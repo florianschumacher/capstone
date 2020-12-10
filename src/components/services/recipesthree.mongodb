@@ -11,7 +11,7 @@ use('recipes');
 db.recipes.drop();
 
 // insert a few documents into the recipes collection.
-db.recipes.insertmany([
+db.forkgasm.insertmany([
     {
     "2": {
         "id": "2",
