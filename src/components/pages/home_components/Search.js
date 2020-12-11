@@ -37,9 +37,9 @@ const SearchLogic = () => {
 
     // Loading Spinner Code //
     const [loading, setLoading] = useState(false)
-    const now = 10;
+    /*     const now = 10; */
     const classes = useStyles();
-    const [value, setValue] = React.useState(0);
+    /*     const [value, setValue] = React.useState(0); */
     // Loading Spinner Code //
     const APP_ID = '73198c18'
     const APP_KEY = '971f353d5c972855c1d4c1f8575bb7c2'
@@ -123,9 +123,9 @@ const SearchWrapper = styled.div`
     height: 3.125rem;
     max-width: 23.438rem;
     width: 100%;
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 33%, rgba(178,140,64,1) 33%);
-    z-index: 99;
+    background: rgba(178,140,64,1);
+/*     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 33%, rgba(178,140,64,1) 33%);
+ */    z-index: 99;
     border-style: none;
     box-shadow: 0.25rem 0.25rem 0.5rem #b28c40;
   `
@@ -152,7 +152,7 @@ const Button = styled.button`
     background-color: hsl(27, 19%, 94%);
     min-height: 1.5rem;
     max-height: 1.5rem;
-    border-radius: 1.5rem;
+    border-radius: 0.125rem;
     border: none;
     box-shadow: 0.125rem 0.125rem 0.3rem;
     margin-left: 0.125rem;

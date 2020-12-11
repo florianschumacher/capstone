@@ -24,12 +24,11 @@ const Head = styled.div`
     justify-content: center;
     height: 3.125rem;
     width: 23.438rem;
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 33%, rgba(178,140,64,1) 33%);
+    background: rgba(178,140,64,1);
     z-index: 97;
     border-style: none;
     border-bottom: 0.25rem white;
-    box-shadow: 0.25rem 0.25rem 0.25rem #1d1f2a;
+    box-shadow: 0rem 0.25rem 0.5rem #b28c40;
     h1 {
         display: flex;
         justify-content: right;
