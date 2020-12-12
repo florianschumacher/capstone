@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom";
 import styled from 'styled-components/macro';
-import React from 'react'
+import React, { useState } from 'react'
 
-import Ingredient from "./page_components/Ingredient";
+import Ingredient from "../modules/page_components/Ingredient";
 import Header from '../modules/Header'
 
 import AppBar from '@material-ui/core/AppBar';
@@ -47,8 +47,9 @@ function TabPanel(props) {
 export default function Recipes() {
     const location = useLocation()
     const { title, calories, image, ingredients, portions, totalWeight, totalTime } = location.state
-    //
 
+    const [shoppingList, setShoppingList] = useState([]);
+    //
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
@@ -60,6 +61,7 @@ export default function Recipes() {
     const handleChangeIndex = (index) => {
         setValue(index);
     };
+    //
 
     //
     let duration = totalTime
@@ -72,8 +74,18 @@ export default function Recipes() {
     } else {
         duration = 'No Information on Duration'
     }
+    //
 
+    function handleAddIngredient(title) {
+        if (shoppingList.includes(title)) {
+            console.log(title + ' is included')
+            setShoppingList(shoppingList.filter(ingredient => ingredient !== title))
+        } else {
+            setShoppingList([...shoppingList, title]);
+        }
+    }
 
+    console.log(shoppingList, 'SHOPPING LIST');
     return (
         <div>
             <Wrapper>
@@ -124,10 +136,15 @@ export default function Recipes() {
                 </AppBar>
                 <IngredientListWrapper>
                     <TabPanel value={value} index={0} dir={theme.direction}>
-
+                        <button onClick={() => alert(shoppingList)}>Create Shopping List with Selected Items</button>
                         <ul>
                             {ingredients.map((ingredient, index) => (
-                                <Ingredient title={ingredient.text} key={index} />
+                                <Ingredient
+                                    title={ingredient.text}
+                                    key={index}
+                                    index={index}
+                                    onAddIngredient={handleAddIngredient}
+                                />
                             ))}
                         </ul>
 
@@ -145,7 +162,7 @@ export default function Recipes() {
 }
 const Wrapper = styled.section`
 position: fixed;
-    margin-top: 0rem;
+    
     margin-left: 0rem;
     width: 95%;`
 
@@ -162,13 +179,29 @@ const RecipeWrapper = styled.section`
     border-radius: 0.1875rem;
     background: whitesmoke;
     h2 {
+        position: absolute;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
+        margin-top: 3.75rem;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;;
+        max-width: 21.875rem;
+        font-weight: 200;
+        z-index: 2;
+        color: whitesmoke;
+        background-color: hsla(50, 33%, 25%, 0.75);
+        
+        
+       /*  display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-top: 3rem;
         margin-bottom: 0.3125rem;
         margin-right: 0.5rem;
-        margin-left: 0.5rem;
+        margin-left: 0.5rem; */
     };
     p {
         font-size: 0.725rem;
@@ -176,6 +209,7 @@ const RecipeWrapper = styled.section`
    
     };
     img {
+        margin-top: 3.25rem;
         border-radius: 0.1875rem;
         border: solid;
         border-color: #fff;

@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import LinearBuffer from '@material-ui/core/CircularProgress';
 
 import ListElement from './ListBox'
-import Progress from '../Progress';
+import Progress from '../../pages/Progress';
 
 const LoadingWrapper = styled.div`
 position: fixed;
@@ -123,9 +123,8 @@ const SearchWrapper = styled.div`
     height: 3.125rem;
     max-width: 23.438rem;
     width: 100%;
-    background: rgba(178,140,64,1);
-/*     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 33%, rgba(178,140,64,1) 33%);
- */    z-index: 99;
+    background: rgba(178,140,64);
+    z-index: 99;
     border-style: none;
     box-shadow: 0.25rem 0.25rem 0.5rem #b28c40;
   `

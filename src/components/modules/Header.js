@@ -24,7 +24,7 @@ const Head = styled.div`
     justify-content: center;
     height: 3.125rem;
     width: 23.438rem;
-    background: rgba(178,140,64,1);
+    background: rgba(178,140,64);
     z-index: 97;
     border-style: none;
     border-bottom: 0.25rem white;
