@@ -4,7 +4,10 @@ import styled from 'styled-components'
 const Ingredient = ({ title, isDone, index, onAddIngredient }) => {
     return (
         <CheckBoxWrapper >
-            <input type="checkbox" checked={isDone} id="ingredient" onClick={() => onAddIngredient(title)} />
+            <input type="checkbox"
+                checked={isDone}
+                id="ingredient"
+                onClick={() => onAddIngredient(title)} />
             <label htmlFor="ingredient">
                 {title}
             </label>
@@ -14,7 +17,8 @@ const Ingredient = ({ title, isDone, index, onAddIngredient }) => {
 
 Ingredient.propTypes = {
     title: PropTypes.string.isRequired,
-    isDone: PropTypes.bool
+    isDone: PropTypes.bool,
+    defaultChecked: true
 }
 
 const CheckBoxWrapper = styled.li`

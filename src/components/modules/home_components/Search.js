@@ -46,7 +46,7 @@ const SearchLogic = () => {
 
     const [recipes, setRecipes] = useState([])
     const [search, setSearch] = useState('')
-    const [query, setQuery] = useState('low-carb, food')
+    const [query, setQuery] = useState('low-carb, Main course')
 
 
     useEffect(() => {
@@ -81,7 +81,7 @@ const SearchLogic = () => {
                 </form>
             </SearchWrapper>
             <TagWrapper onSubmit={getSearch} className="FilterForm" >
-                <Button onClick={() => setQuery('low-carb, food')}>Reset</Button>
+                <Button onClick={() => setQuery('low-carb, Main course')}>Reset</Button>
                 <Button onClick={() => setQuery('low-carb, Main course')}>Low Carb</Button>
                 <Button onClick={() => setQuery('vegetarian, Main course')}>Vegetarian</Button>
                 <Button onClick={() => setQuery('vegan, Main course')}>Vegan</Button>

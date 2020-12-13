@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import styled from 'styled-components/macro';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Ingredient from "../modules/page_components/Ingredient";
 import Header from '../modules/Header'
@@ -12,7 +12,6 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-///
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
         width: '23.125rem',
     },
 }));
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -41,18 +41,24 @@ function TabPanel(props) {
     );
 }
 
-
-///
-
 export default function Recipes() {
     const location = useLocation()
     const { title, calories, image, ingredients, portions, totalWeight, totalTime } = location.state
-
     const [shoppingList, setShoppingList] = useState([]);
-    //
+
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
+
+    const createShoppingList = location.ingredients
+
+    useEffect(() => {
+        getLocalShoppingList()
+    }, []);
+
+    useEffect(() => {
+        saveLocalShoppingList()
+    });
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -61,9 +67,8 @@ export default function Recipes() {
     const handleChangeIndex = (index) => {
         setValue(index);
     };
-    //
 
-    //
+    //-> get and transform time to hours and mins
     let duration = totalTime
     if (duration > 0) {
         const min = parseInt(totalTime, 10);
@@ -74,8 +79,9 @@ export default function Recipes() {
     } else {
         duration = 'No Information on Duration'
     }
-    //
+    //<-get and transform time to hours and mins
 
+    //-> add ingredient on check
     function handleAddIngredient(title) {
         if (shoppingList.includes(title)) {
             console.log(title + ' is included')
@@ -83,9 +89,25 @@ export default function Recipes() {
         } else {
             setShoppingList([...shoppingList, title]);
         }
-    }
+    };
+    //<- add ingredient on check
 
-    console.log(shoppingList, 'SHOPPING LIST');
+
+    //-> local Storage
+    const saveLocalShoppingList = () => {
+        localStorage.setItem('shoppingList', JSON.stringify(shoppingList))
+    };
+
+    const getLocalShoppingList = () => {
+        if (localStorage.getItem('shoppingList') === null) {
+            localStorage.setItem('shoppingList', JSON.stringify([]))
+        } else {
+            let localReceipts = localStorage.setItem('shoppingList', JSON.stringify(shoppingList))
+            console.log(localReceipts)
+        }
+    };
+    //<- local Storage
+
     return (
         <div>
             <Wrapper>
@@ -136,7 +158,7 @@ export default function Recipes() {
                 </AppBar>
                 <IngredientListWrapper>
                     <TabPanel value={value} index={0} dir={theme.direction}>
-                        <button onClick={() => alert(shoppingList)}>Create Shopping List with Selected Items</button>
+                        <button onClick={saveLocalShoppingList}>Export selected Ingredients</button>
                         <ul>
                             {ingredients.map((ingredient, index) => (
                                 <Ingredient
@@ -147,7 +169,6 @@ export default function Recipes() {
                                 />
                             ))}
                         </ul>
-
                     </TabPanel>
                 </IngredientListWrapper>
                 <TabPanel value={value} index={1} dir={theme.direction}>
