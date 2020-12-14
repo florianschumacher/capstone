@@ -44,21 +44,12 @@ function TabPanel(props) {
 export default function Recipes() {
     const location = useLocation()
     const { title, calories, image, ingredients, portions, totalWeight, totalTime } = location.state
-    const [shoppingList, setShoppingList] = useState([]);
+    const [shoppingList, setShoppingList] = useState(ingredients.map(ingredient => ingredient.text));
 
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
 
-    const createShoppingList = location.ingredients
-
-    useEffect(() => {
-        getLocalShoppingList()
-    }, []);
-
-    useEffect(() => {
-        saveLocalShoppingList()
-    });
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -94,20 +85,21 @@ export default function Recipes() {
 
 
     //-> local Storage
-    const saveLocalShoppingList = () => {
-        localStorage.setItem('shoppingList', JSON.stringify(shoppingList))
+    function saveLocalShoppingList() {
+        localStorage.setItem(title, JSON.stringify(shoppingList))
+        console.log(title)
     };
 
-    const getLocalShoppingList = () => {
-        if (localStorage.getItem('shoppingList') === null) {
-            localStorage.setItem('shoppingList', JSON.stringify([]))
-        } else {
-            let localReceipts = localStorage.setItem('shoppingList', JSON.stringify(shoppingList))
-            console.log(localReceipts)
-        }
-    };
+    /*     const getLocalShoppingList = () => {
+            if (localStorage.getItem('shoppingList') === null) {
+                localStorage.setItem('shoppingList', JSON.stringify([]))
+            } else {
+                let localReceipts = localStorage.setItem('shoppingList', JSON.stringify(shoppingList))
+                console.log(localReceipts)
+            }
+        }; */
     //<- local Storage
-
+    console.log(shoppingList)
     return (
         <div>
             <Wrapper>
@@ -166,6 +158,7 @@ export default function Recipes() {
                                     key={index}
                                     index={index}
                                     onAddIngredient={handleAddIngredient}
+                                    isDone={shoppingList.includes(ingredient.text)}
                                 />
                             ))}
                         </ul>

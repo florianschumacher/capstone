@@ -1,6 +1,5 @@
-const GetList = (shoppingList) => {
-    const jList = localStorage.getItem(shoppingList)
-    return JSON.parse(jList)
-}
-
-export default GetList
+/* export default class LocalStorage {
+    constructor() {
+        this.tasks = JSON.parse(localStorage.getItem('shoppingList')) || [];
+    }
+} */

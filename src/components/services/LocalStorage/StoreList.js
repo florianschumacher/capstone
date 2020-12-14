@@ -1,8 +1,8 @@
 import Header from '../modules/Header'
 
-const StoreList = (shoppingList) => {
+/* const StoreList = (shoppingList) => {
     const key = Header
     localStorage.setItem(key, JSON.stringify(shoppingList))
 }
 
-export default StoreList
+export default StoreList */

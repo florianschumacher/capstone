@@ -7,8 +7,10 @@ const Ingredient = ({ title, isDone, index, onAddIngredient }) => {
             <input type="checkbox"
                 checked={isDone}
                 id="ingredient"
-                onClick={() => onAddIngredient(title)} />
-            <label htmlFor="ingredient">
+                onClick={() => onAddIngredient(title)}
+            />
+
+            <label htmlFor="title">
                 {title}
             </label>
         </CheckBoxWrapper>
@@ -18,7 +20,6 @@ const Ingredient = ({ title, isDone, index, onAddIngredient }) => {
 Ingredient.propTypes = {
     title: PropTypes.string.isRequired,
     isDone: PropTypes.bool,
-    defaultChecked: true
 }
 
 const CheckBoxWrapper = styled.li`
