@@ -1,11 +1,16 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const Ingredient = ({ title, isDone, theme }) => {
+const Ingredient = ({ title, isDone, index, onAddIngredient }) => {
     return (
         <CheckBoxWrapper >
-            <input type="checkbox" checked={isDone} id="ingredient" />
-            <label htmlFor="ingredient">
+            <input type="checkbox"
+                checked={isDone}
+                id="ingredient"
+                onClick={() => onAddIngredient(title)}
+            />
+
+            <label htmlFor="title">
                 {title}
             </label>
         </CheckBoxWrapper>
@@ -14,7 +19,7 @@ const Ingredient = ({ title, isDone, theme }) => {
 
 Ingredient.propTypes = {
     title: PropTypes.string.isRequired,
-    isDone: PropTypes.bool
+    isDone: PropTypes.bool,
 }
 
 const CheckBoxWrapper = styled.li`

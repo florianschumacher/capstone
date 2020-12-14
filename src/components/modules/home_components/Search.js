@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import LinearBuffer from '@material-ui/core/CircularProgress';
 
 import ListElement from './ListBox'
-import Progress from '../Progress';
+import Progress from '../../pages/Progress';
 
 const LoadingWrapper = styled.div`
 position: fixed;
@@ -46,7 +46,7 @@ const SearchLogic = () => {
 
     const [recipes, setRecipes] = useState([])
     const [search, setSearch] = useState('')
-    const [query, setQuery] = useState('low-carb, food')
+    const [query, setQuery] = useState('low-carb, Main course')
 
 
     useEffect(() => {
@@ -81,7 +81,7 @@ const SearchLogic = () => {
                 </form>
             </SearchWrapper>
             <TagWrapper onSubmit={getSearch} className="FilterForm" >
-                <Button onClick={() => setQuery('low-carb, food')}>Reset</Button>
+                <Button onClick={() => setQuery('low-carb, Main course')}>Reset</Button>
                 <Button onClick={() => setQuery('low-carb, Main course')}>Low Carb</Button>
                 <Button onClick={() => setQuery('vegetarian, Main course')}>Vegetarian</Button>
                 <Button onClick={() => setQuery('vegan, Main course')}>Vegan</Button>
@@ -123,9 +123,8 @@ const SearchWrapper = styled.div`
     height: 3.125rem;
     max-width: 23.438rem;
     width: 100%;
-    background: rgba(178,140,64,1);
-/*     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 33%, rgba(178,140,64,1) 33%);
- */    z-index: 99;
+    background: rgba(178,140,64);
+    z-index: 99;
     border-style: none;
     box-shadow: 0.25rem 0.25rem 0.5rem #b28c40;
   `

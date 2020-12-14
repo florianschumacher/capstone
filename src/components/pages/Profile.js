@@ -1,4 +1,7 @@
 import Header from '../modules/Header'
+/* import GetList from '../services/LocalStorage/getlist'
+ */
+
 
 const Profile = () => {
     return (
