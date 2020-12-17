@@ -11,7 +11,6 @@ const ListElement = ({ title, calories, image, ingredients, portions, totalWeigh
                     state: { title, calories, image, ingredients, portions, totalWeight, totalTime }
                 }}> <h2>{title}</h2>
                 <img src={image} alt="" /></Link>
-            {/* <p>{calories.toFixed(0)} Calories</p> */}
         </ListItem>
     )
 }
@@ -22,7 +21,6 @@ function urlTitle(title) {
 
 const ListItem = styled.section`
     position: relative;
-/*     margin-top: 3rem; */
     margin-bottom: -1.5rem;
     display: flex;
     flex-direction: column;
@@ -64,7 +62,6 @@ const ListItem = styled.section`
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
         min-width: 22rem;
-       /*  margin-bottom: -0.3125rem; */
         margin-left: 0.1rem;
         margin-right: 1.4rem;
         font-size: 1.2rem;
@@ -72,7 +69,7 @@ const ListItem = styled.section`
         z-index: 2;
         color: whitesmoke;
         background-color: hsla(50, 33%, 25%, 0.75);
-                 };
+};
     `
 
 export default ListElement;

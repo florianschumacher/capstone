@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import LinearBuffer from '@material-ui/core/CircularProgress';
 
 import ListElement from './ListBox'
-import Progress from '../../pages/Progress';
 
 const LoadingWrapper = styled.div`
 position: fixed;

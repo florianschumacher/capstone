@@ -23,7 +23,7 @@ const Head = styled.div`
     align-items: center;
     justify-content: center;
     height: 3.125rem;
-    width: 23.438rem;
+    width: 23.4375rem;
     background: rgba(178,140,64);
     z-index: 97;
     border-style: none;
@@ -35,7 +35,6 @@ const Head = styled.div`
         text-align: left;
         margin-right: 1.5rem;
         margin-left: 1.5rem;
-        padding-left: 2rem;
         font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-weight: 400;
     };

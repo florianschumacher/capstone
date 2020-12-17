@@ -12,8 +12,8 @@ import Progress from './components/pages/Progress'
 import Profile from './components/pages/Profile'
 import FooterNavigation from './components/modules/Footernavigation'
 import Recipes from './components/pages/Recipes'
-import GlobylStyles from './components/services/GlobalStyle'
-import GlobalStyle from './components/services/GlobalStyle';
+import GlobalStyle from './components/services/Global/GlobalStyle'
+
 
 const App = () => {
   return (

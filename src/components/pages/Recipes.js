@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import styled from 'styled-components/macro';
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import Ingredient from "../modules/page_components/Ingredient";
 import Header from '../modules/Header'
@@ -11,7 +11,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-
+import GetLists from '../services/LocalStorage/GetList'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -86,18 +86,17 @@ export default function Recipes() {
 
     //-> local Storage
     function saveLocalShoppingList() {
-        localStorage.setItem(title, JSON.stringify(shoppingList))
+        const shoppingListFromLocalStorage = GetLists('shoppingList');
+        localStorage.setItem(
+            'shoppingList',
+            JSON.stringify({
+                ...shoppingListFromLocalStorage,
+                [title]: shoppingList
+            })
+        )
         console.log(title)
     };
 
-    /*     const getLocalShoppingList = () => {
-            if (localStorage.getItem('shoppingList') === null) {
-                localStorage.setItem('shoppingList', JSON.stringify([]))
-            } else {
-                let localReceipts = localStorage.setItem('shoppingList', JSON.stringify(shoppingList))
-                console.log(localReceipts)
-            }
-        }; */
     //<- local Storage
     console.log(shoppingList)
     return (
@@ -207,15 +206,6 @@ const RecipeWrapper = styled.section`
         color: whitesmoke;
         background-color: hsla(50, 33%, 25%, 0.75);
         
-        
-       /*  display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        margin-top: 3rem;
-        margin-bottom: 0.3125rem;
-        margin-right: 0.5rem;
-        margin-left: 0.5rem; */
     };
     p {
         font-size: 0.725rem;
