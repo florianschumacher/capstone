@@ -1,5 +1,5 @@
 import SearchLogic from '../modules/home_components/Search'
-import GlobalStyle from '../services/GlobalStyle'
+import GlobalStyle from '../services/Global/GlobalStyle'
 import styled from 'styled-components/'
 import React from 'react'
 import Header from '../modules/Header'
