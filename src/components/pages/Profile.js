@@ -22,15 +22,15 @@ export default function Profile() {
                 <Header title="Profile" />
             </ProfileHeader>
             <ProfileWrapper>
-                <ul>
+                <ul><details>
                     {ingredientsByRecipe.map(ingredientList => (
-                        <li>{ingredientList.title}
+                        <li><summary>{ingredientList.title}</summary>
                             <ul>
-                                {ingredientList.shoppingList.map(ingredient => <li>{ingredient}</li>)}
+                                <p>{ingredientList.shoppingList.map(ingredient => <li>{ingredient}</li>)}</p>
                             </ul>
                         </li>
                     ))}
-                </ul>
+                </details></ul>
             </ProfileWrapper>
         </div>
 
