@@ -18,19 +18,20 @@ export default function Profile() {
     console.log(ingredientsByRecipe)
     return (
         <div>
-            <ProfileHeader>
-                <Header title="Profile" />
-            </ProfileHeader>
+
+            <Header title="Profile" />
+
             <ProfileWrapper>
-                <ul><details>
-                    {ingredientsByRecipe.map(ingredientList => (
-                        <li><summary>{ingredientList.title}</summary>
-                            <ul>
-                                <p>{ingredientList.shoppingList.map(ingredient => <li>{ingredient}</li>)}</p>
-                            </ul>
-                        </li>
-                    ))}
-                </details></ul>
+                {ingredientsByRecipe.map(ingredientList => (
+                    <details>
+                        <summary>{ingredientList.title}</summary>
+                        <ul>
+                            {ingredientList.shoppingList.map(ingredient => <li>{ingredient}</li>)}
+                        </ul>
+                    </details>
+
+                ))}
+
             </ProfileWrapper>
         </div>
 
@@ -39,18 +40,13 @@ export default function Profile() {
 
 
 
-const ProfileHeader = styled.div`
-position: absolute;
-    margin-top: 0rem;`
-
+/* const ProfileHeader = styled.div`
+    position: absolute;
+    margin-top: 0rem;` */
 
 const ProfileWrapper = styled.section`
-    position:relative;
     width:100%;
-    z-index:1;
-    margin-top: 20px;
-    margin-bottom: 120px;
-    list-style: none;`
+`
 
 
 
