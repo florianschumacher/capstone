@@ -2,6 +2,7 @@ import Header from '../modules/Header'
 import GetLists from '../services/LocalStorage/GetList'
 import styled from 'styled-components/macro'
 import { useState, useEffect } from 'react'
+import '../modules/page_components/ProfileCSS.css'
 
 
 export default function Profile() {
@@ -18,9 +19,7 @@ export default function Profile() {
     console.log(ingredientsByRecipe)
     return (
         <div>
-
             <Header title="Profile" />
-
             <ProfileWrapper>
                 {ingredientsByRecipe.map(ingredientList => (
                     <details>
@@ -29,20 +28,12 @@ export default function Profile() {
                             {ingredientList.shoppingList.map(ingredient => <li>{ingredient}</li>)}
                         </ul>
                     </details>
-
                 ))}
-
             </ProfileWrapper>
         </div>
-
     )
 }
 
-
-
-/* const ProfileHeader = styled.div`
-    position: absolute;
-    margin-top: 0rem;` */
 
 const ProfileWrapper = styled.section`
     width:100%;
