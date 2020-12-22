@@ -35,9 +35,19 @@ export default function Profile() {
     for (let recipeTitle in shopThisList) {
         ingredientsByRecipe.push({ title: recipeTitle, shoppingList: shopThisList[recipeTitle] });
     }
+    //
+    /*     useEffect((recipeTitle, shopThisList) => {
+            localStorage.setItem({ title: recipeTitle, shoppingList: shopThisList[recipeTitle] })
+            shopThisList = localStorage.getItem(recipeTitle)
+        }) */
 
+    function onDelete(recipeTitle) {
+        /*         Object.keys(shopThisList).forEach((recipeTitle) => recipeTitle.title !== recipeTitle) */
 
-    console.log(ingredientsByRecipe)
+        console.log(Object.keys(shopThisList))
+        console.log(recipeTitle)
+    }
+    //
     return (
         <div>
             <Header title="Bookmarks" />
@@ -49,7 +59,7 @@ export default function Profile() {
                                 <Typography>
                                     <ul className='ULement'>{ingredientList.title}</ul>
                                 </Typography>
-                                <Button className='Button' onclick={() => { alert('Zomg, i´am clicked') }}>Delete</Button>
+                                <Button className='Button' onClick={(ingredientList) => onDelete(ingredientList.title)}>Delete</Button>
                             </AccordionSummary>
                             <ul className='ULement'>
                                 {ingredientList.shoppingList.map(ingredient =>
@@ -67,7 +77,11 @@ export default function Profile() {
             </ProfileWrapper>
         </div>
     )
+
+
 }
+
+
 
 
 const ProfileWrapper = styled.section`
