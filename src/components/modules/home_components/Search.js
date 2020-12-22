@@ -72,6 +72,9 @@ const SearchLogic = () => {
     return (
 
         <div className="SearchLogic">
+            <div>
+
+            </div>
             <SearchWrapper>
                 <form onSubmit={getSearch} className="SearchForm">
                     <StyledInput className="search-bar" placeholder="Find healthy recipes" type="text" value={search} onChange={updateSearch} borders="none" />
@@ -114,7 +117,7 @@ const SearchLogic = () => {
 
 
 const SearchWrapper = styled.div`
-    position: fixed;
+    position: sticky;
     margin-top: -5rem;
     display: flex;
     align-items: center;
@@ -122,15 +125,14 @@ const SearchWrapper = styled.div`
     height: 3.125rem;
     max-width: 23.438rem;
     width: 100%;
-    background: rgba(178,140,64);
+    background: #f2f3f3;
     z-index: 99;
     border-style: none;
-    box-shadow: 0.25rem 0.25rem 0.5rem #b28c40;
   `
 
 const TagWrapper = styled.div`
-    position: absolute;
-    margin-top: -1.5rem;
+    position: relative;
+margin-top: -0.2rem;
     margin-bottom: 0rem;
     align-items: center;
     display: flex;
@@ -139,33 +141,32 @@ const TagWrapper = styled.div`
     max-width: 23.438rem;
     width: 100%;
     z-index: 98;
-    border-top:1px;
-    border-color: #b28c40;
+    border-top: 1px grey;
     border-radius:0px;
-    background: lightgrey;
+    background: #FFF9EB;
     justify-content: center;
 `
 
 const Button = styled.button`
-    background-color: hsl(27, 19%, 94%);
-    min-height: 1.5rem;
+    background-color: #ebeded;
+    min-height: 2.125rem;
     max-height: 1.5rem;
-    border-radius: 0.125rem;
-    border: none;
-    box-shadow: 0.125rem 0.125rem 0.3rem;
-    margin-left: 0.125rem;
-    margin-right: 0.125rem;
+    border: 0.025rem solid lightslategray;
+    border-radius: 0.0125rem;
+    box-shadow: 0.0125rem 0.0125rem;
+    margin-left: 0.025rem;
+    margin-right: 0.025rem;
     padding: 0.125rem;
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.4rem;
     font-size: 0.7rem;
-    /* color:  hsla(0, 0%, 89%, 0.12); */
     cursor: pointer;
 `
 
 const ListWrapper = styled.div`
     display: flex;
     flex-direction: column;
+margin-top: -2rem;
     `
 
 const StyledInput = styled.input`
