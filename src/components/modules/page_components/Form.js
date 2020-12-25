@@ -1,45 +1,57 @@
-import styled from 'styled-components/macro'
+import React, { Component } from 'react'
+import DateTime from '../../services/systemServices/getCurrentTime'
 
-export default function Form({ onCreateWeight }) {
+const timeHandler = DateTime
 
-    function handleSubmit(event) {
-        event.preventDefault()
-        const formElement = event.target
-        const input = formElement.title
-        onCreateWeight(input.value)
-        formElement.reset()
-        input.focus()
+class Form extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      health: '',
+      bloodpressure: '',
+      currentDate: ''
     }
-
-    return <FormStyled onSubmit={handleSubmit}>
-        <label>
-            Add Weight:
-      <input name="title" type="numbers" placeholder="Add Weight here" />
-        </label>
-        <Button>Add</Button>
-    </FormStyled>
-}
-
-const FormStyled = styled.form`
-  display: grid;
-  align-items: center;
-  gap: 4px;
-  width: 50%;
-  margin-bottom: 20px;
-  justify-items: stretch;
-
-  input {
-    font-size: 1em;
-    width: 100%;
-    padding: 4px 0;
   }
-`
 
-const Button = styled.button`
-  padding: 10px 20px;
-  background: darkblue;
-  color: white;
-  font-size: 1.2em;
-  border: none;
-  border-radius: 2px;
-`
+
+  render() {
+    return (
+      <div className="Form">
+        <form id="SUBMIT_BODY_VALUES" onSubmit={this.handleSubmit.bind(this)} method="POST">
+          <div className="form-group">
+            <label htmlFor="health">Weight:</label>
+            <input type="text" className="form-control" value={this.state.health} onChange={this.onHealthInput.bind(this)} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="bloodpressure">Blood Pressure</label>
+            <input type="bloodpressure" className="form-control" value={this.state.bloodpressure} onChange={this.onBloodInput.bind(this)} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="currentDate"><DateTime /></label>
+            <span className="form-control" value={timeHandler} onChange={this.onDateInput.bind(this)} />
+          </div>
+          <button type="submit" className="Submit">Submit</button>
+        </form>
+      </div>
+    );
+  }
+
+  onHealthInput(event) {
+    this.setState({ health: event.target.value })
+  }
+
+  onBloodInput(event) {
+    this.setState({ bloodpressure: event.target.value })
+  }
+
+  onDateInput(event) {
+    this.setState({ currentDate: event.target.value })
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(this.state);
+  }
+}
+export default Form;

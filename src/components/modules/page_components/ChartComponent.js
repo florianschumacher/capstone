@@ -5,7 +5,7 @@ const BarChart = () => {
     return <div>
         <Line
             data={{
-                labels: ['June', 'July', 'August', 'September', 'October', 'November'],
+                labels: ['June', 'July', 'Aug', 'Sep', 'Oct', 'Nov'],
                 datasets: [{
                     label: 'Weight',
                     data: [12, 19, 3, 5, 2, 3]
