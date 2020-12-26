@@ -1,36 +1,37 @@
-
-import React from 'react';
+import React, { Component } from 'react';
 import DateTime from '../../services/systemServices/getCurrentTime'
 
-export default class enterStats extends React.Component {
-    state = {
-        weight: '',
-        heart: '',
-        day: ''
-    };
+class Form extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            health: '',
+            bloodpressure: '',
+            currentDate: ''
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
 
-    handleChange = (event) => {
-        const formElement = event.target
-        const input = formElement.time && formElement.blood && formElement.heart
-        console.log(input)
-    };
-
-    handleFormSubmit = () => { };
+    handleChange(event) { this.setState({ value: event.target.value }); }
+    handleSubmit(event) {
+        alert('A name was submitted: ' + this.state.value);
+        event.preventDefault();
+    }
 
     render() {
         return (
-            <form onSubmit={this.handleFormSubmit}>
+            <form onSubmit={this.handleSubmit}>
                 <label>
-                    weight: <input name="weight" value={this.state.weight} onChange={this.handleChange} />
-                </label>
+                    health:
+          <input type="text" value={this.state.health} onChange={this.handleChange} />        </label>
                 <label>
-                    heart: <input name="heart" value={this.state.heart} onChange={this.handleChange} />
-                </label>
-                <label>
-                    <DateTime />
-                </label>
-                <button type="submit">Submit</button>
+                    bloodpressure:
+          <input type="text" value={this.state.bloodpressure} onChange={this.handleChange} />        </label>
+                <input type="submit" value="Submit" />
             </form>
         );
     }
 }
+
+export default Form

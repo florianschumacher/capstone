@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
-import DateTime from '../../services/systemServices/getCurrentTime'
-
-const timeHandler = DateTime
+import React, { useState, useEffect, Component } from 'react'
+/* import DateTime from '../../services/systemServices/getCurrentTime' */
+import saveLocally from '../../services/LocalStorage/saveLocally'
+import loadLocally from '../../services/LocalStorage/loadLocally'
+import { v4 as uuidv4 } from 'uuid';
+import GetLists from '../../services/LocalStorage/GetList';
 
 class Form extends React.Component {
 
@@ -9,11 +11,10 @@ class Form extends React.Component {
     super(props);
     this.state = {
       health: '',
-      bloodpressure: '',
-      currentDate: ''
+      bloodPressure: '',
+      currentDate: new Date().toLocaleString()
     }
   }
-
 
   render() {
     return (
@@ -21,15 +22,12 @@ class Form extends React.Component {
         <form id="SUBMIT_BODY_VALUES" onSubmit={this.handleSubmit.bind(this)} method="POST">
           <div className="form-group">
             <label htmlFor="health">Weight:</label>
-            <input type="text" className="form-control" value={this.state.health} onChange={this.onHealthInput.bind(this)} />
+            <input type="number" className="form-control" value={this.state.health} onChange={this.onHealthInput.bind(this)} maxlength="3" min="0" max="300" />
           </div>
           <div className="form-group">
-            <label htmlFor="bloodpressure">Blood Pressure</label>
-            <input type="bloodpressure" className="form-control" value={this.state.bloodpressure} onChange={this.onBloodInput.bind(this)} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="currentDate"><DateTime /></label>
-            <span className="form-control" value={timeHandler} onChange={this.onDateInput.bind(this)} />
+            <label htmlFor="bloodPressure">Resting Pulse</label>
+            <input type="number" className="form-control" value={this.state.bloodPressure} onChange={this.onBloodInput.bind(this)} maxlength="3" min="0" max="300" />
+            {/* <input type="bloodPressure" className="form-control" value={this.state.bloodPressure.diastolic} onChange={this.onBloodInput.bind(this)} /> */}
           </div>
           <button type="submit" className="Submit">Submit</button>
         </form>
@@ -42,7 +40,7 @@ class Form extends React.Component {
   }
 
   onBloodInput(event) {
-    this.setState({ bloodpressure: event.target.value })
+    this.setState({ bloodPressure: event.target.value },)
   }
 
   onDateInput(event) {
@@ -52,6 +50,22 @@ class Form extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state);
+    const { health, bloodPressure, currentDate } = this.state;
+    console.log(localStorage);
+
+    const BodyValuesFromLocalStorage = GetLists('bodyValues') ?? [];
+
+    localStorage.setItem(
+      'bodyValues',
+      JSON.stringify([
+        ...BodyValuesFromLocalStorage,
+        { id: uuidv4(), currentDate, health, bloodPressure },
+      ])
+    );
+    event.target.reset();
   }
+
 }
+
+
 export default Form;
