@@ -1,9 +1,8 @@
 import React, { useState, useEffect, Component } from 'react'
-/* import DateTime from '../../services/systemServices/getCurrentTime' */
-import saveLocally from '../../services/LocalStorage/saveLocally'
-import loadLocally from '../../services/LocalStorage/loadLocally'
 import { v4 as uuidv4 } from 'uuid';
 import GetLists from '../../services/LocalStorage/GetList';
+import Chart from '../page_components/ChartComponent'
+
 
 class Form extends React.Component {
 
@@ -12,7 +11,7 @@ class Form extends React.Component {
     this.state = {
       health: '',
       bloodPressure: '',
-      currentDate: new Date().toLocaleString()
+      currentDate: new Date().toLocaleDateString('ca-de')
     }
   }
 
@@ -27,7 +26,6 @@ class Form extends React.Component {
           <div className="form-group">
             <label htmlFor="bloodPressure">Resting Pulse</label>
             <input type="number" className="form-control" value={this.state.bloodPressure} onChange={this.onBloodInput.bind(this)} maxlength="3" min="0" max="300" />
-            {/* <input type="bloodPressure" className="form-control" value={this.state.bloodPressure.diastolic} onChange={this.onBloodInput.bind(this)} /> */}
           </div>
           <button type="submit" className="Submit">Submit</button>
         </form>
@@ -40,7 +38,7 @@ class Form extends React.Component {
   }
 
   onBloodInput(event) {
-    this.setState({ bloodPressure: event.target.value },)
+    this.setState({ bloodPressure: event.target.value })
   }
 
   onDateInput(event) {
@@ -48,6 +46,8 @@ class Form extends React.Component {
   }
 
   handleSubmit(event) {
+    const form = event.target
+    form.reset()
     event.preventDefault();
     console.log(this.state);
     const { health, bloodPressure, currentDate } = this.state;
@@ -59,7 +59,7 @@ class Form extends React.Component {
       'bodyValues',
       JSON.stringify([
         ...BodyValuesFromLocalStorage,
-        { id: uuidv4(), currentDate, health, bloodPressure },
+        { currentDate, health, bloodPressure },
       ])
     );
     event.target.reset();

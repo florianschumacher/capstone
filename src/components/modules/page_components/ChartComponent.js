@@ -1,18 +1,39 @@
+import { useState, useEffect } from 'react'
 import React from 'react'
+import loadLocally from '../../services/LocalStorage/loadLocally'
+import Form from '../page_components/Form'
 import { Line } from 'react-chartjs-2'
+import GetLists from '../../services/LocalStorage/GetList';
 
-const BarChart = () => {
+
+
+const Chart = () => {
+    /*  for (let i = 0; i < localStorage.length; i++) {
+         const data = localStorage.key(i);
+         console.log(data + ' : ' + localStorage.getItem(data));
+     } */
+
+
+    const data = () => {
+        for (let i = 0; i < localStorage.length; i++) {
+            const data = localStorage.key(i);
+            console.log(data + ' : ' + localStorage.getItem(data));
+        }
+    }
+
+
+
     return <div>
         <Line
             data={{
-                labels: ['June', 'July', 'Aug', 'Sep', 'Oct', 'Nov'],
+                labels: data.timelabels,
                 datasets: [{
                     label: 'Weight',
-                    data: [12, 19, 3, 5, 2, 3]
+                    data: data.weightlabels
                 },
                 {
-                    label: 'Bloodpressure',
-                    data: [78, 68, 79, 100, 90, 56]
+                    label: 'Heartrate',
+                    data: data.heartlabels
                 }
                 ]
             }}
@@ -32,4 +53,4 @@ const BarChart = () => {
     </div>
 }
 
-export default BarChart
+export default Chart

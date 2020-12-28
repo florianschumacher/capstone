@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 //
 
-export default function Profile() {
+export default function Bookmarks() {
   const [shopThisList, setShopThisList] = useState(GetLists(SHOPPING_LIST_KEY) ?? []);
 
   const classes = useStyles();
