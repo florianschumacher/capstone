@@ -1,56 +1,52 @@
-import { useState, useEffect } from 'react'
 import React from 'react'
-import loadLocally from '../../services/LocalStorage/loadLocally'
-import Form from '../page_components/Form'
 import { Line } from 'react-chartjs-2'
-import GetLists from '../../services/LocalStorage/GetList';
+import styled from 'styled-components/macro'
 
 
 
 const Chart = () => {
-    /*  for (let i = 0; i < localStorage.length; i++) {
-         const data = localStorage.key(i);
-         console.log(data + ' : ' + localStorage.getItem(data));
-     } */
+    const bodyValues = localStorage.getItem('bodyValues');
+    const data = JSON.parse(bodyValues) ?? [];
 
+    const datelabels = data.map(entry => entry.currentDate)
+    const weightlabels = data.map(entry => entry.health)
+    const heartlabels = data.map(entry => entry.bloodPressure)
 
-    const data = () => {
-        for (let i = 0; i < localStorage.length; i++) {
-            const data = localStorage.key(i);
-            console.log(data + ' : ' + localStorage.getItem(data));
-        }
-    }
-
-
+    console.log(datelabels + 'chart Component')
 
     return <div>
-        <Line
-            data={{
-                labels: data.timelabels,
-                datasets: [{
-                    label: 'Weight',
-                    data: data.weightlabels
-                },
-                {
-                    label: 'Heartrate',
-                    data: data.heartlabels
-                }
-                ]
-            }}
-            height={200}
-            width={360}
-            options={{
-                maintainAspectAatio: false,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }}
-        />
+        <LineContainer>
+            <Line
+                data={{
+                    labels: datelabels,
+                    datasets: [{
+                        label: 'Weight',
+                        data: weightlabels
+                    },
+                    {
+                        label: 'Heartrate',
+                        data: heartlabels
+                    }
+                    ]
+                }}
+                height={200}
+                width={300}
+                options={{
+                    maintainAspectAatio: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }}
+            />
+        </LineContainer>
     </div>
 }
 
 export default Chart
+
+const LineContainer = styled.div`
+max-width: 100%`
