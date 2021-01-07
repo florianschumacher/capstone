@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
-import DateTime from '../../services/systemServices/getCurrentTime'
+import React, { useState, useEffect, Component } from 'react'
+import { v4 as uuidv4 } from 'uuid';
+import GetLists from '../../services/LocalStorage/GetList';
+import Chart from '../page_components/ChartComponent'
+import styled from 'styled-components/macro';
 
-const timeHandler = DateTime
 
 class Form extends React.Component {
 
@@ -9,40 +11,41 @@ class Form extends React.Component {
     super(props);
     this.state = {
       health: '',
-      bloodpressure: '',
-      currentDate: ''
+      bloodPressure: '',
+      currentDate: new Date().toLocaleDateString('ca-de')
     }
   }
-
 
   render() {
     return (
       <div className="Form">
         <form id="SUBMIT_BODY_VALUES" onSubmit={this.handleSubmit.bind(this)} method="POST">
-          <div className="form-group">
-            <label htmlFor="health">Weight:</label>
-            <input type="text" className="form-control" value={this.state.health} onChange={this.onHealthInput.bind(this)} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="bloodpressure">Blood Pressure</label>
-            <input type="bloodpressure" className="form-control" value={this.state.bloodpressure} onChange={this.onBloodInput.bind(this)} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="currentDate"><DateTime /></label>
-            <span className="form-control" value={timeHandler} onChange={this.onDateInput.bind(this)} />
-          </div>
-          <button type="submit" className="Submit">Submit</button>
+          <FieldWrapper>
+            <div className="form-group">
+              <label htmlFor="health"></label>
+              <input type="number" className="form-control" value={this.state.health} onChange={this.onHealthInput.bind(this)} placeholder="Weight" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="bloodPressure"></label>
+              <input type="number" className="form-control" value={this.state.bloodPressure} onChange={this.onBloodInput.bind(this)} placeholder="Resting Pulse" />
+            </div>
+          </FieldWrapper>
+          <ButtonWrapper>
+            <Button type="submit" className="Submit">Submit</Button>
+          </ButtonWrapper>
         </form>
       </div>
     );
   }
+
+
 
   onHealthInput(event) {
     this.setState({ health: event.target.value })
   }
 
   onBloodInput(event) {
-    this.setState({ bloodpressure: event.target.value })
+    this.setState({ bloodPressure: event.target.value })
   }
 
   onDateInput(event) {
@@ -50,8 +53,57 @@ class Form extends React.Component {
   }
 
   handleSubmit(event) {
+    const form = event.target
+    form.reset()
     event.preventDefault();
-    console.log(this.state);
+
+    const { health, bloodPressure, currentDate } = this.state;
+    console.log(this.state + 'statelog at form');
+    console.log(localStorage + 'storagelog at form1');
+
+    const BodyValuesFromLocalStorage = GetLists('bodyValues') ?? [];
+
+    localStorage.setItem(
+      'bodyValues',
+      JSON.stringify([
+        ...BodyValuesFromLocalStorage,
+        { currentDate, health, bloodPressure },
+      ])
+    );
+    console.log(localStorage + 'storagelog at form2');
+    event.target.reset();
   }
+
 }
+
+
+const FieldWrapper = styled.div`
+margin-top:1.25rem;
+width: 90%;
+margin-left:1.25rem;
+margin-right:1.25rem;
+display:flex;
+flex-direction: nowrap;
+justify-content: space-around;`
+
+const ButtonWrapper = styled.div`
+margin-left:1.25rem;
+margin-top:1.25rem;
+width: 100%;
+display:flex;
+flex-direction: nowrap;`
+
+const Button = styled.button`
+width: 90%;
+display:flex;
+flex-direction: nowrap;
+text-align: center;
+background-color: #4CAF50;
+border: none;
+color: white;
+padding: 16px 32px;
+text-decoration: none;
+cursor: pointer;`
+
 export default Form;
+

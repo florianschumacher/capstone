@@ -74,10 +74,8 @@ export default function Recipes() {
 
   //-> local Storage
   function saveLocalShoppingList() {
-    //todo: getLists - functions start with lower case
     const shoppingListFromLocalStorage = GetLists('shoppingList') ?? [];
 
-    //Todo: Refactor to use your saveLocally function and use the constant as key
     localStorage.setItem(
       'shoppingList',
       JSON.stringify([
